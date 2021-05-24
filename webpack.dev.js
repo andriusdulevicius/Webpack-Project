@@ -8,12 +8,20 @@ module.exports = {
         main: path.resolve(__dirname, './src/app.js'), //dinamiskai pasiima faila absoliuciu keliu, nesvarbu is kokio pc paleistum
     },
     output: {},
-    module: {},
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+        ],
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/html/template.html',
             templateParameters: {
                 title: 'We now know Webpack.',
+                mainTitle: 'This is easy',
             },
             minify: { removeComments: true, collapseWhitespace: false },
         }),
