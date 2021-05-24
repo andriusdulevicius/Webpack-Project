@@ -132,7 +132,7 @@ assetModuleFilename: 'images/[name][ext]',
 
 
 
-norint minimizuoti paveikslelius, reikia instaliuoti tuos du: 
+norint minimizuoti paveikslelius, reikia instaliuoti tuos tris pluginus: 
 
 npm install image-minimizer-webpack-plugin --save-dev
 
@@ -147,8 +147,6 @@ ir to pacio failo apacioj prie pluginu irasom :
 
 
 new ImageMinimizerPlugin({
-            filename: 'images/[name].webp',
-            deleteOriginalAssets: true,
             minimizerOptions: {
                 plugins: [
                     ['imagemin-webp'],
@@ -160,26 +158,9 @@ new ImageMinimizerPlugin({
             },
         }),
 
-o prie rules :
 
-{
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
-            },
 
-webpack.production ir config failuose output dalyje irasome: 
-
-assetModuleFilename: 'images/[name / arba hash][ext]', 
-
-kad visi paveiksleliai butu issaugoti images faile
-
-o prie plugins imgminimize skiltyje , nutriname: 
-
-filename: 'images/[name].webp',  
-            deleteOriginalAssets: true,
-(nes nurodeme output dalyje pavadinima bendra visiems)
-
-prisideti post css plugin - kad pridetu reikalingus webkit pagal narsykle ir versija
+13. prisideti post css plugin - kad pridetu reikalingus webkit pagal narsykle ir versija
 npm install --save-dev postcss postcss-loader postcss-preset-env
 
 webpack production faile, prie rules >> use  darasome 'postcss-loader'

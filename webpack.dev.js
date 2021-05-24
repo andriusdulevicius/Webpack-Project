@@ -1,5 +1,6 @@
 const path = require('path'); // node modulis dirbti su keliais iki failu
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //html generavimo pluginas.
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin'); //img suspaudimo pluginas
 
 module.exports = {
     mode: 'development',
@@ -26,6 +27,7 @@ module.exports = {
                 test: /\.(png|svg|jpe?g|gif)$/i,
                 type: 'asset/resource',
             },
+
             //css loader
             {
                 test: /\.css$/i, //pritaikom .cc failam
@@ -52,6 +54,17 @@ module.exports = {
                 mainTitle: 'This is easy',
             },
             minify: { removeComments: true, collapseWhitespace: false },
+        }),
+        new ImageMinimizerPlugin({
+            minimizerOptions: {
+                plugins: [
+                    ['imagemin-webp'],
+                    ['mozjpeg', { quality: 50 }],
+                    ['gifsicle'],
+                    ['pngquant'],
+                    ['imagemin-svgo'],
+                ],
+            },
         }),
     ],
 };
