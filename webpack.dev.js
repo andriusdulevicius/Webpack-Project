@@ -3,6 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //html generavimo plug
 
 module.exports = {
     mode: 'development',
+    devServer: {
+        contentBase: './dist',
+    },
+    devtool: 'source-map', //is cia matome consoleje is kurio failo kokia eilute atlekiavo
     entry: {
         //kuri faila paims webpackas kaip pagrindini
         main: path.resolve(__dirname, './src/app.js'), //dinamiskai pasiima faila absoliuciu keliu, nesvarbu is kokio pc paleistum
@@ -14,10 +18,12 @@ module.exports = {
     },
     module: {
         rules: [
+            //css loader
             {
                 test: /\.css$/i, //pritaikom .cc failam
                 use: ['style-loader', 'css-loader'], //uzkraunam css
             },
+            //babel loader
             {
                 test: /\.js$/,
                 exclude: /node_modules/, //taspats ieskosim js failu, isskyrus(exlude) node_modules faile

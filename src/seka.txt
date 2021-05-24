@@ -80,10 +80,13 @@ pridedam naujas rules i webpack config faila:
               }
             }
 
+o aplamai prie module.exports pridedame savybe: 
+devtool: 'source-map',
+
 is naujo paleidziam npm start
 
 
-10. susiinstaliuojam webpack-dev-server:
+10. suinstaliuojam webpack-dev-server:
 
 npm install --save-dev webpack-dev-server
 
