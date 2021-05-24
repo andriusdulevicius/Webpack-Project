@@ -49,7 +49,7 @@ output: {
 
 suinstaliuojam stiliaus packus:
 npm install --save-dev css-loader style-loader
-isirasius pluginus , webpack config faile ties moduleexports irasome papildoma info:
+isirasius pluginus , webpack config faile ties module.exports irasome papildoma info:
 module: {
         rules: [
             {
@@ -59,9 +59,11 @@ module: {
         ],
     },
 
-kad viska kas baigiasi su .css visiem failam pritaikome tuos du parsiustus loaderius.
+Visiems failams kas baigiasi su .css pritaikome tuos du parsiustus loaderius.
+css faila susikuriame src direktorijoje css ,  importuojam ji i app.js :  
+import './css/main.css';
 
-Susiinstaliuojam babelio packus:
+9.Susiinstaliuojam babelio packus:
 
 npm install --save-dev babel-loader @babel/core @babel/preset-env
 
