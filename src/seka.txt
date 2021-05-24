@@ -7,25 +7,20 @@ npm install --save-dev webpack webpack-cli (command line interface)
 
 4. sukuriam .gitignore root direktorijoje, ir jame irasome node_modules ir dist
 
-5.sukuriam scripta package.json faile start "webpack";
+5. Sukuriam webpack configuracijos faila webpack.dev.js;
+sukuriam scripta package.json faile 
+"start": "webpack --config webpack.dev.js";
 
-paruosimas produkcijai(sugeneruojam optimalius failus, sujungiam i viena ir pap.)
+6. cia turetu but webpack.build.js
 
-paleidziam webpack:
-npx webpack --mode production
-arba npm start  (musu sukurta komanda package.json faile script dalyje)
 
-sukompiliavimas kurimui - (development mode)
-npx webpack --mode development
-juos galime susikelti i package.json failo scriptus 
-
-pasidarom scriptus dev build ir start
-
-norim idiegti html plugin
+7. Reikia idiegti html generavimo plugina:
 npm install --save-dev html-webpack-plugin
 
+inicijuojam plugina confige ir nurodom jam naudoti musu template.html
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');   --sitas eilutes nusikopijuojam is dokumentacijos webpack internetiniame puslapyje ir idedam i sukurta faila webpack.config.js
+const path = require('path');   --sitas eilutes nusikopijuojam is dokumentacijos webpack internetiniame puslapyje ir idedam i sukurta faila webpack.dev.js arba config faila(priklauso nuo situacijos, ko jus norite)
 
 suinstaliuojam stiliaus packus:
 npm install --save-dev css-loader style-loader
