@@ -1,4 +1,4 @@
-Instaliuojam webpack : 
+1. Instaliuojam webpack : 
 npm install --save-dev webpack webpack-cli (command line interface)
 
 paruosimas produkcijai(sugeneruojam optimalius failus, sujungiam i viena ir pap.)
