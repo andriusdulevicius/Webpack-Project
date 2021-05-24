@@ -1,14 +1,19 @@
 1.Pasikuriam projekta,  pridedam git + github , bent vienas modulinis js failas su kazkokiu funkcionalumu.
+
 2.inicializuojam NPM -npm init
 
 3. Instaliuojam webpack : 
 npm install --save-dev webpack webpack-cli (command line interface)
 
-4. sukuriam .gitignore root direktorijoje, ir jame irasome node_modules
+4. sukuriam .gitignore root direktorijoje, ir jame irasome node_modules ir dist
+
+5.sukuriam scripta package.json faile start "webpack";
 
 paruosimas produkcijai(sugeneruojam optimalius failus, sujungiam i viena ir pap.)
+
 paleidziam webpack:
 npx webpack --mode production
+arba npm start  (musu sukurta komanda package.json faile script dalyje)
 
 sukompiliavimas kurimui - (development mode)
 npx webpack --mode development
