@@ -1,6 +1,7 @@
 const path = require('path'); // node modulis dirbti su keliais iki failu
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //html generavimo pluginas.
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin'); //img suspaudimo pluginas
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //css minimizer pluginas
 
 module.exports = {
     mode: 'development',
@@ -31,7 +32,7 @@ module.exports = {
             //css loader
             {
                 test: /\.css$/i, //pritaikom .cc failam
-                use: ['style-loader', 'css-loader', 'postcss-loader'], //uzkraunam css
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'], //uzkraunam css
             },
             //babel loader
             {
@@ -47,6 +48,7 @@ module.exports = {
         ],
     },
     plugins: [
+        new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             template: './src/html/template.html',
             templateParameters: {

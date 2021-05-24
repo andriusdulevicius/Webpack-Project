@@ -104,7 +104,7 @@ npm run serve - paleidzia lokalu serveri darbui, bet  neatkuria failu , viska la
 
 o su npm run dev paleidus, atkuria ir istrintus failus
 
-11. instaliuojam minimize css packa (production dalyje reikalignas): 
+11. instaliuojam minimize css packa (production dalyje reikalignas, bet siuo atveju i dev.js instaliuosiu): 
 npm install --save-dev mini-css-extract-plugin
 
 tada webpacke production failo virsuje ikeliam: const MiniCssExtractPlugin = require('mini-css-extract-plugin');
