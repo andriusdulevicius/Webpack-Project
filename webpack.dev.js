@@ -7,7 +7,11 @@ module.exports = {
         //kuri faila paims webpackas kaip pagrindini
         main: path.resolve(__dirname, './src/app.js'), //dinamiskai pasiima faila absoliuciu keliu, nesvarbu is kokio pc paleistum
     },
-    output: {},
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true, //isvalome pries tai dist folderyje buvusius failus
+    },
     module: {
         rules: [
             {
