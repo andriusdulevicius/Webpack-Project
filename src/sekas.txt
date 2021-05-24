@@ -1,0 +1,154 @@
+Instaliuojam webpack : 
+npm install --save-dev webpack webpack-cli (command line interface)
+
+paruosimas produkcijai(sugeneruojam optimalius failus, sujungiam i viena ir pap.)
+paleidziam webpack:
+npx webpack --mode production
+
+sukompiliavimas kurimui - (development mode)
+npx webpack --mode development
+juos galime susikelti i package.json failo scriptus 
+
+pasidarom scriptus dev build ir start
+
+norim idiegti html plugin
+npm install --save-dev html-webpack-plugin
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');   --sitas eilutes nusikopijuojam is dokumentacijos webpack internetiniame puslapyje ir idedam i sukurta faila webpack.config.js
+
+suinstaliuojam stiliaus packus:
+npm install --save-dev css-loader style-loader
+isirasius pluginus , webpack config faile ties moduleexports irasome papildoma info:
+module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            }
+        ],
+    },
+
+kad viska kas baigiasi su .css visiem failam pritaikome tuos du parsiustus loaderius.
+
+Susiinstaliuojam babelio packus:
+
+npm install --save-dev babel-loader @babel/core @babel/preset-env
+
+pridedam naujas rules i webpack config faila:
+
+{
+              test: /\.js$/,
+              exclude: /node_modules/, //taspats ieskosim js failu, isskyrus(exlude) node_modules faile
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env'] //kiek daug atgal i praeiti mes norim sugrizti(kad veiktu ant senu narsykliu)
+                }
+              }
+            }
+
+is naujo paleidziam npm run dev/build
+
+
+susiinstaliuojam webpack-dev-server:
+
+npm install --save-dev webpack-dev-server
+
+prie module.exports prirasom
+
+  devServer: {
+    contentBase: './dist',
+  },
+
+package.json faile , sukuriam scripta:
+"serve": "webpack serve --open"  (tarsi liveserver)
+npm run serve - neatkuria failu , viska laiko atmintyje ( jei pvz istrinsim dist faile, paleidus serve , ta dir neatsiras)
+
+su npm run dev paleidus, atkuria ir istrintus failus
+
+instaliuojam minimize css packa: 
+npm install --save-dev mini-css-extract-plugin
+
+tada webpacke production failo virsuje ikeliam: const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+poto:
+prie plugins ikelti new MiniCssExtractPlugin();
+prie rules vietoj 'style-loader' ikeliame MiniCssExtractPlugin.loader
+
+
+Del img: 
+sita ikeliam i rules webpack.config faile:
+{
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+
+tada pasiimti paveikslelius galesim su importu 
+
+norint minimizuoti paveikslelius, reikia instaliuoti tuos du: 
+
+npm install image-minimizer-webpack-plugin --save-dev
+
+npm install imagemin-gifsicle imagemin-mozjpeg imagemin-pngquant imagemin-svgo --save-dev
+
+npm install imagemin-webp --save-dev
+
+i webpack production failo virsu isitraukiam plugina: 
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+
+ir to pacio failo apacioj prie pluginu irasom : 
+
+
+new ImageMinimizerPlugin({
+            filename: 'images/[name].webp',
+            deleteOriginalAssets: true,
+            minimizerOptions: {
+                plugins: [
+                    ['imagemin-webp'],
+                    ['mozjpeg', { quality: 50 }],
+                    ['gifsicle'],
+                    ['pngquant'],
+                    ['imagemin-svgo'],
+                ],
+            },
+        }),
+
+o prie rules :
+
+{
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
+
+webpack.production ir config failuose output dalyje irasome: 
+
+assetModuleFilename: 'images/[name / arba hash][ext]', 
+
+kad visi paveiksleliai butu issaugoti images faile
+
+o prie plugins imgminimize skiltyje , nutriname: 
+
+filename: 'images/[name].webp',  
+            deleteOriginalAssets: true,
+(nes nurodeme output dalyje pavadinima bendra visiems)
+
+prisideti post css plugin - kad pridetu reikalingus webkit pagal narsykle ir versija
+npm install --save-dev postcss postcss-loader postcss-preset-env
+
+webpack production faile, prie rules >> use  darasome 'postcss-loader'
+
+sukuriam faila postcss.config.js root direktorijoje, ir joje irasome:
+
+module.exports = {
+    plugins: ['postcss-preset-env'],
+};
+
+
+sukuriam faila : .browserslistrc  ,
+jo viduje rasome: 
+
+last 2 versions
+> 0.5%
+IE 9
+
+(cia info del webkitu, kad butu palaikomas senose narsyklese , irasius si faila , dist folderio css faile kur reikia daraso webkit prie savybiu ir perraso tam tikras savybes, kad veiktu senose narsyklese)
