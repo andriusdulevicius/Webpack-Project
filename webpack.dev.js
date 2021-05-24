@@ -18,6 +18,16 @@ module.exports = {
                 test: /\.css$/i, //pritaikom .cc failam
                 use: ['style-loader', 'css-loader'], //uzkraunam css
             },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/, //taspats ieskosim js failu, isskyrus(exlude) node_modules faile
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'], //kiek daug atgal i praeiti mes norim sugrizti(kad veiktu ant senu narsykliu)
+                    },
+                },
+            },
         ],
     },
     plugins: [

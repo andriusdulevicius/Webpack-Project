@@ -63,7 +63,7 @@ Visiems failams kas baigiasi su .css pritaikome tuos du parsiustus loaderius.
 css faila susikuriame src direktorijoje css ,  importuojam ji i app.js :  
 import './css/main.css';
 
-9.Susiinstaliuojam babelio packus:
+9.Susiinstaliuojam babelio packus:(jis mums padeda naudoti naujesnes js savybes senesniose narsyklese(perraso koda i senesni kad butu suprantama narsyklems))
 
 npm install --save-dev babel-loader @babel/core @babel/preset-env
 
@@ -80,10 +80,10 @@ pridedam naujas rules i webpack config faila:
               }
             }
 
-is naujo paleidziam npm run dev/build
+is naujo paleidziam npm start
 
 
-susiinstaliuojam webpack-dev-server:
+10. susiinstaliuojam webpack-dev-server:
 
 npm install --save-dev webpack-dev-server
 
@@ -108,7 +108,7 @@ prie plugins ikelti new MiniCssExtractPlugin();
 prie rules vietoj 'style-loader' ikeliame MiniCssExtractPlugin.loader
 
 
-Del img: 
+11. Del img optimizavimo: 
 sita ikeliam i rules webpack.config faile:
 {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
