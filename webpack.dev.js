@@ -31,7 +31,7 @@ module.exports = {
             //css loader
             {
                 test: /\.css$/i, //pritaikom .cc failam
-                use: ['style-loader', 'css-loader'], //uzkraunam css
+                use: ['style-loader', 'css-loader', 'postcss-loader'], //uzkraunam css
             },
             //babel loader
             {
@@ -61,7 +61,7 @@ module.exports = {
                     ['imagemin-webp'],
                     ['mozjpeg', { quality: 50 }],
                     ['gifsicle'],
-                    ['pngquant'],
+                    ['pngquant', { quality: [0.5, 0.7] }],
                     ['imagemin-svgo'],
                 ],
             },

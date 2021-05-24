@@ -163,7 +163,8 @@ new ImageMinimizerPlugin({
 13. prisideti post css plugin - kad pridetu reikalingus webkit pagal narsykle ir versija
 npm install --save-dev postcss postcss-loader postcss-preset-env
 
-webpack production faile, prie rules >> use  darasome 'postcss-loader'
+webpack production faile, prie rules >> use  dali pakeiciame i : 
+use: ['style-loader', 'css-loader', 'postcss-loader'],
 
 sukuriam faila postcss.config.js root direktorijoje, ir joje irasome:
 
