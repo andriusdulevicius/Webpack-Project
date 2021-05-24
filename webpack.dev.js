@@ -3,9 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //html generavimo plug
 
 module.exports = {
     mode: 'development',
-    devServer: {
-        contentBase: './dist',
-    },
+
     devtool: 'source-map', //is cia matome consoleje is kurio failo kokia eilute atlekiavo
     entry: {
         //kuri faila paims webpackas kaip pagrindini
@@ -15,6 +13,10 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true, //isvalome pries tai dist folderyje buvusius failus
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        port: 8080,
     },
     module: {
         rules: [

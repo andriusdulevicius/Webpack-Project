@@ -92,15 +92,17 @@ npm install --save-dev webpack-dev-server
 
 prie module.exports prirasom
 
-  devServer: {
-    contentBase: './dist',
-  },
+ devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        port: 8080,
+    },
 
 package.json faile , sukuriam scripta:
-"serve": "webpack serve --open"  (tarsi liveserver)
-npm run serve - neatkuria failu , viska laiko atmintyje ( jei pvz istrinsim dist faile, paleidus serve , ta dir neatsiras)
+  "serve": "webpack serve --config webpack.dev.js --open"  (tarsi liveserver)
 
-su npm run dev paleidus, atkuria ir istrintus failus
+npm run serve - paleidzia lokalu serveri darbui, bet  neatkuria failu , viska laiko atmintyje ( jei pvz istrinsim dist faile, paleidus serve , tai dir neatsiras)
+
+o su npm run dev paleidus, atkuria ir istrintus failus
 
 instaliuojam minimize css packa: 
 npm install --save-dev mini-css-extract-plugin
