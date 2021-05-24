@@ -19,6 +19,19 @@ npm install --save-dev html-webpack-plugin
 
 inicijuojam plugina confige ir nurodom jam naudoti musu template.html
 
+(Jei norim per webpack dev paduoti title ar kazka dinamiskai , tuomet src esanciame html faile parasom : <title><%= title %></title> , o webpack.dev.js faile prie pluginu paduodam template parametra :
+
+plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/html/template.html',
+            templateParameters: {
+                title: 'We now know Webpack.',
+            },
+             minify: { removeComments: true, collapseWhitespace: false  },
+)
+o minify parametras panaikina komentarus dist faile sukompiliuotam html failui.
+
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');   --sitas eilutes nusikopijuojam is dokumentacijos webpack internetiniame puslapyje ir idedam i sukurta faila webpack.dev.js arba config faila(priklauso nuo situacijos, ko jus norite)
 
