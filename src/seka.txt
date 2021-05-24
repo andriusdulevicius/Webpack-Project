@@ -104,7 +104,7 @@ npm run serve - paleidzia lokalu serveri darbui, bet  neatkuria failu , viska la
 
 o su npm run dev paleidus, atkuria ir istrintus failus
 
-instaliuojam minimize css packa: 
+11. instaliuojam minimize css packa (production dalyje reikalignas): 
 npm install --save-dev mini-css-extract-plugin
 
 tada webpacke production failo virsuje ikeliam: const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -113,14 +113,24 @@ prie plugins ikelti new MiniCssExtractPlugin();
 prie rules vietoj 'style-loader' ikeliame MiniCssExtractPlugin.loader
 
 
-11. Del img optimizavimo: 
+12. Del img optimizavimo: 
 sita ikeliam i rules webpack.config faile:
 {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
+                test: /\.(png|svg|jpe?g|gif)$/i,
+                type: 'asset/resource',
+            },
 
-tada pasiimti paveikslelius galesim su importu 
+tada pasiimti paveikslelius galesim su importu (importuojant i js, gauname src adresa, todel reikia susikurti nauja elementa img,  ir sukurto elemento.src prilyginam importuotam elementui)
+
+Taip pat galima img ikelti tiesiogiai i html, bet skiriasi src nurodomas kelias, paduodamas dinamiskai: 
+<img src="<%= require('../images/gifJoke.gif')%>" alt="gif" />
+
+Jei norime kad dist folderyje sugeneruotu visus images i foldery, webpacke prie output parasome nauja savybe: 
+
+assetModuleFilename: 'images/[name][ext]',
+
+
+
 
 norint minimizuoti paveikslelius, reikia instaliuoti tuos du: 
 

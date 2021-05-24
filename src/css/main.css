@@ -2,3 +2,7 @@ body {
     background-color: tomato;
     color: snow;
 }
+
+img {
+    max-width: 100%;
+}

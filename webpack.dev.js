@@ -13,6 +13,7 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true, //isvalome pries tai dist folderyje buvusius failus
+        assetModuleFilename: 'images/[name][ext]',
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -20,6 +21,11 @@ module.exports = {
     },
     module: {
         rules: [
+            //images rules
+            {
+                test: /\.(png|svg|jpe?g|gif)$/i,
+                type: 'asset/resource',
+            },
             //css loader
             {
                 test: /\.css$/i, //pritaikom .cc failam
